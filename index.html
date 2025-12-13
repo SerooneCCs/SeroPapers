@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" href="SeroPapers Logo.jpg" type="image/jpeg" sizes="any">
+    <link rel="shortcut icon" href="SeroPapers Logo.jpg">
+    <link rel="apple-touch-icon" href="SeroPapers Logo.jpg">
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--nav-height) + 12px);
+        }
+
+        :root{ --nav-height: 64px; }
+        .page-frame {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            border: 10px solid black;
+            box-sizing: border-box;
+            z-index: 10001;
+        }
+
+        .site-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+            padding: 0 12px;
+            background: #ffffff;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            z-index: 10000;
+            box-sizing: border-box;
+        }
+
+        body {
+            padding-top: var(--nav-height);
+            background-color: #ffffff;
+            margin: 0px;
+            padding-left: 0px;
+            padding-right: 0px;
+            padding-bottom: 0px;
+            box-sizing: border-box;
+        }
+
+        .site-nav .site-logo {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: auto;
+            max-height: calc(var(--nav-height) - 12px);
+            height: auto;
+            display: block;
+        }
+
+        .site-logo {
+            display: block;
+            position: relative;
+            width: auto;
+            max-height: calc(var(--nav-height) - 12px);
+            height: auto;
+            z-index: 9999;
+        }
+
+        .site-nav .nav-links {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .site-nav a {
+            font-family: Arial, sans-serif;
+            text-decoration: none;
+            color: inherit;
+            font-weight: 700;
+            padding: 8px 12px;
+            border: 2px solid #000;
+            border-radius: 12px;
+            background: #fff;
+            transition: transform 160ms ease, box-shadow 160ms ease, opacity 120ms ease;
+            will-change: transform, box-shadow, opacity;
+        }
+        .site-nav a:focus,
+        .site-nav a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+            opacity: 0.95;
+        }
+
+        .title-text {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            font-size: 100px;
+            color: #000000;
+        }
+        .main-text {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: #000000;
+            font-size: 25px;
+        }
+        .bio-text {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: #000000;
+            font-size: 25px;
+            padding: 10px;
+        }
+
+        .site-logo {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            width: 80px;
+            height: auto;
+            z-index: 9999;
+        }
+
+        .not-title-text {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: #000000;
+            font-size: 75px;
+        }
+        .for-info-text {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: #000000;
+            font-size: 25px;
+            margin-left: 10px;
+        }
+        p {
+            font-size: 20px;
+            color: #000000;
+        }
+        .wallpaper_previews {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .wallpaper_previews .wallpaper-item {
+            flex: 1 1 calc(33.333% - 10px);
+            max-width: calc(33.333% - 10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            scroll-margin-top: calc(var(--nav-height) + 12px);
+        }
+
+        .wallpaper_previews img {
+            width: 100%;
+            height: auto;
+        }
+        button {
+            font-size: 20px;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            border: 2px solid black;
+            border-radius: 20px;
+            border-width: 5px;
+            border-style: solid;
+            padding: 0px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0px;
+            cursor: pointer;
+            width: 200px;
+            height: 100px;
+            transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+            will-change: transform, box-shadow;
+        }
+
+        button:hover,
+        button:focus {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+            outline: none;
+        }
+
+        button:active {
+            transform: translateY(-2px) scale(0.96);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.06);
+        }
+
+        .site-nav a:active {
+            transform: translateY(-1px) scale(0.97);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .disclaimer_text {
+            color: #000000;
+            font-size: 15px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .version_text {
+            color: #000000;
+            font-size: small;
+            text-align: left;
+            font-family: Arial, sans-serif;
+            margin-left: 15px;
+        }
+
+        .site-logo { cursor: pointer; }
+        .site-logo.spin {
+            animation: spin720 700ms ease-in-out;
+        }
+
+        @keyframes spin720 {
+            from { transform: translateY(-50%) rotate(0deg); }
+            to   { transform: translateY(-50%) rotate(720deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-frame" aria-hidden="true"></div>
+    <nav class="site-nav" aria-label="Main navigation">
+      <img src="SeroPapers Logo.jpg" alt="SeroPapers logo" class="site-logo">
+      <div class="nav-links">
+        <a href="#top">Home</a>
+        <a href="#first-pack">Wallpaper Packs</a>
+        <a href="#bio">Bio</a>
+      </div>
+    </nav>
+
+    <p class="title-text" id="top"><b>Welcome to SeroPapers</b></p>
+    <p class="main-text">The only website to download all of the wallpapers that SerooneCCs (Coops) has made.</p>
+    <p class="disclaimer_text">Please do not distribute any of these wallpapers or claim as your own work. This is protected under Australian Copyright Law.</p>
+    <br>
+    <div class="wallpaper_previews">
+        <div class="wallpaper-item" id="first-pack">
+            <picture><img src="Circles wallpapers nobg.png" alt="Circles preview"></picture>
+            <button onclick="downloadCirclesPack()">Download Circles Wallpaper Pack</button>
+            <p class="for-info-text">A pack inspired by Bog's pack, but made in PowerPoint and free.</p>
+        </div>
+
+        <div class="wallpaper-item">
+            <picture><img src="absract wallpapers nobg.png" alt="Abstract preview"></picture>
+            <button onclick="downloadAbstractPack()">Download Abstract Wallpaper Pack</button>
+            <p class="for-info-text">A pack I made because I wanted some simple wallpapers.</p>
+        </div>
+
+        <div class="wallpaper-item">
+            <picture><img src="Lines wallpapers noBg.png" alt="Lines preview"></picture>
+            <a href="Lines Wallpaper Pack.zip" download><button>Download Lines Wallpaper Pack</button></a>
+            <p class="for-info-text">A pack I made for no reason. I just got bored.</p>
+        </div>
+
+        <div class="wallpaper-item">
+            <picture><img src="Penguin wallpaers nobg.png" alt="Penguin preview"></picture>
+            <a href="Penguin Wallpaper Pack.zip" download><button>Download Penguin Wallpaper Pack</button></a>
+            <p class="for-info-text">A pack I made for my friend.</p>
+        </div>
+
+        <div class="wallpaper-item">
+            <picture><img src="Clouds Preview.jpg" alt="Clouds preview"></picture>
+            <a href="Clouds Wallpaper Pack.zip" download><button>Download Clouds Wallpaper Pack</button></a>
+            <p class="for-info-text">A pack I made to look like some clouds.</p>
+        </div>
+
+        <div class="wallpaper-item">
+            <picture><img src="Mountains Preview.jpg" alt="Mountains preview"></picture>
+            <button onclick="downloadMountainsPack()">Download Mountains Wallpaper Pack</button>
+            <p class="for-info-text">A pack with mountains, a sky and a man doing something.</p>
+        </div>
+
+        <div class="wallpaper-item">
+            <picture><img src="Colours Preview.jpg" alt="Colours preview"></picture>
+            <button onclick="downloadColoursPack()">Download Colours Wallpaper Pack</button>
+            <p class="for-info-text">A pack of some layered colours.</p>
+        </div>
+
+        <div class="wallpaper-item">
+            <picture><img src="Fruits Preview.jpg" alt="Fruits preview"></picture>
+            <a href="Fruits Wallpaper Pack.zip" download><button>Download Fruits Wallpaper Pack</button></a>
+            <p class="for-info-text">A pack of wallpapers that revolves around a single fruit.</p>
+        </div>
+    </div>
+    <p class="main-text">Why are some packs in parts?</p>
+    <p class="disclaimer_text">Some packs are in parts because the wallpapers are very high quality and therefor MASSIVE file sizes because they have a lot of pixels, and they can add up very quickly.</p>    
+    <br>
+    <p class="not-title-text" id="bio">My Bio</p>
+    <p class="bio-text">Hey! I'm a teen kid who likes anything tech, one of which involves making wallpapers. Also, I enjoy 3D Modelling, so check out my <a href="https://makerworld.com/en/@serooneccs" target="_blank" rel="noopener noreferrer">Makerworld Profile</a> if you want to see that. Also, I coded this website myself in HTML and CSS!</p>
+    <br>
+    <p class="bio-text">How I make the wallpapers: So I have used 3 softwares over time on 2 devices to make these wallpapers. They are: Adobe Fresco on iPad, Microsoft PowerPoint on Mac, and Procreate on iPad. Some of them take a lot of time, and some of them take a little time to make. Sometimes, especially with the Circles pack, I will make one base wallpaper, and then I can copy/paste that and just adjust the colours or move shapes and stuff around.</p>
+    <br>
+    <p class="version_text">v1.0 PRERELEASE</p>
+    <p class="version_text"><a href="versionnaming.html">How does the version naming work?</a></p>
+    <script>
+      function downloadCirclesPack() {
+        const link1 = document.createElement('a');
+        link1.href = 'Circles Wallpaper Pack pt.1.zip';
+        link1.download = 'Circles Wallpaper Pack pt.1.zip';
+        link1.click();
+        setTimeout(() => {
+          const link2 = document.createElement('a');
+          link2.href = 'Circles Wallpaper Pack pt.2.zip';
+          link2.download = 'Circles Wallpaper Pack pt.2.zip';
+          link2.click();
+        }, 500);
+      }
+      function downloadAbstractPack() {
+        const link1 = document.createElement('a');
+        link1.href = 'Abstract Wallpaper Pack pt.1.zip';
+        link1.download = 'Abstract Wallpaper Pack pt.1.zip';
+        link1.click();
+        setTimeout(() => {
+          const link2 = document.createElement('a');
+          link2.href = 'Abstract Wallpaper Pack pt.2.zip';
+          link2.download = 'Abstract Wallpaper Pack pt.2.zip';
+          link2.click();
+        }, 500);
+      }
+      function downloadMountainsPack() {
+        const link1 = document.createElement('a');
+        link1.href = 'Mountains Wallpaper Pack pt.1.zip';
+        link1.download = 'Mountains Wallpaper Pack pt.1.zip';
+        link1.click();
+        setTimeout(() => {
+          const link2 = document.createElement('a');
+          link2.href = 'Mountains Wallpaper Pack pt.2.zip';
+          link2.download = 'Mountains Wallpaper Pack pt.2.zip';
+          link2.click();
+        }, 500);
+      }
+      function downloadColoursPack() {
+        const link1 = document.createElement('a');
+        link1.href = 'Colours Wallpaper Pack pt.1.zip';
+        link1.download = 'Colours Wallpaper Pack pt.1.zip';
+        link1.click();
+        setTimeout(() => {
+          const link2 = document.createElement('a');
+          link2.href = 'Colours Wallpaper Pack pt.2.zip';
+          link2.download = 'Colours Wallpaper Pack pt.2.zip';
+          link2.click();
+        }, 500);
+      }
+      document.addEventListener('DOMContentLoaded', function () {
+        const topLink = document.querySelector('.site-nav a[href="#top"]');
+        if (topLink) {
+          topLink.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+        }
+        const logo = document.querySelector('.site-logo');
+        if (logo) {
+          logo.addEventListener('click', function () {
+            logo.classList.remove('spin');
+            void logo.offsetWidth;
+            logo.classList.add('spin');
+          });
+          logo.addEventListener('animationend', function () {
+            logo.classList.remove('spin');
+          });
+        }
+      });
+    </script>
+</body>
+</html>
